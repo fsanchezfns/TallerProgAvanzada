@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Formulario Profesor</title>
+        <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/bootstrap/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css"/>
+     
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../admin.php">Menu Principal</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="alumno.html">Alumno</a></li>
+                        <li class="active"><a href="profesor.html">Profesor</a></li>
+                        <li><a href="perro.html">Perro</a></li>
+                    </ul>
+
+
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-2">
+
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="page-header">
+                        <h1>Sistema de Administracion de Profesores</h1>
+                        <p>Este es el ABM de Profesor</p>
+                    </div>
+                    <div class="form-group" align="center">
+                        <select class="btn" id="criterio">
+                            <option value="nombre">Nombre</option>
+                            <option value="apellido">Apellido</option>
+                            <option value="titulo">Titulo</option>
+                            <option value="calle">Calle</option>
+                        </select>
+                        <input type="search" id="txtBusqueda" class="btn" placeholder="Introduzca criterio...">
+                        <button class="btn" id="btnBuscar" type="button">Ir!</button>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td align="center">
+                                <!-- Button trigger modal -->
+                                <button class="btn btn-primary btn-lg" id="agregarProfesor">
+                                    Agregar
+                                </button>
+                            </td>
+                            <td align="center">
+
+                            </td>
+                            <td align="center">
+                                <button class="btn btn-primary btn-lg" id="imprimir">
+                                    Imprimir
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <form id="imprimirProfesores" target="_blank" action="../../controlador/ruteador/Imprimir.php" method="post">
+                        <input type="hidden" id="Formulario" name="Formulario" value="Profesores"/>
+                        <input type="hidden" id="html" name="html"/>
+                    </form>
+
+                    <table class="table" id="tablaProfesor">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Titulo</th>
+                                <th>Calle</th>
+                                <th>Numero</th>
+                                <th>acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="cuerpoTablaProfesor">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- INICIO Modal -->
+        <div class="modal fade" id="modalProfesor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="formProfesor" class="form-horizontal"
+                          data-bv-message="Este valor No es válido"
+                          data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                          data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                          data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
+                          data-bv-submitbuttons='button[type="submit"]'
+                          data-bv-trigger="focus blur"
+                          data-bv-live="enabled">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="tituloModal">Nuevo Profesor</h4>
+
+                        </div>
+                        <div class="modal-body">
+                            <!--    DECLARO UN HIDDEN ID     -->
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" id="id" name="id">
+                            </div>
+                            <!--    DECLARO UN TEXTBOX NOMBRE     -->
+                            <div class="form-group">
+                                <label class='col-lg-2'>Nombre</label>
+                                <div class='col-lg-10'>
+                                    <input class="form-control" type="text" id="nombre" name="nombre"
+                                           data-bv-notempty="true"
+                                           data-bv-notempty-message="Debes completar el Nombre">
+                                </div>
+                            </div>
+                            <!--    DECLARO UN TEXTBOX APELLIDO     -->
+                            <div class="form-group">
+                                <label class='col-lg-2'>Apellido</label>
+                                <div class='col-lg-10'>
+                                    <input class="form-control" type="text" id="apellido" name="apellido"
+                                           data-bv-notempty="true"
+                                           data-bv-notempty-message="Debes completar el Apellido">
+                                </div>
+                            </div>
+                            <!--    DECLARO UN TEXTBOX LEGAJO     -->
+                            <div class="form-group">
+                                <label class='col-lg-2'>Titulo</label>
+                                <div class='col-lg-10'>
+                                    <input class="form-control" type="text" id="titulo" name="titulo"
+                                           data-bv-message="El titulo no es válido"
+
+                                           data-bv-notempty="true"
+                                           data-bv-notempty-message="Debes completar el Titulo">
+                                </div>     
+                            </div>
+                            <!--    DECLARO UN TEXTBOX CALLE     -->
+                            <div class="form-group">
+                                <label class='col-lg-2'>Calle</label>
+                                <div class='col-lg-10'>
+                                    <input class="form-control" type="text" id="calle" name="calle"
+                                           data-bv-notempty="true"
+                                           data-bv-notempty-message="Debes completar la Calle">
+                                </div>
+                            </div>
+                            <!--    DECLARO UN TEXTBOX NUMERO     -->
+                            <div class="form-group">
+                                <label class='col-lg-2'>Numero</label>
+                                <div class='col-lg-10'>
+                                    <input class="form-control" type="text" id="numero" name="numero"
+                                           data-bv-message="El Numero no es válido"
+
+                                           data-bv-notempty="true"
+                                           data-bv-notempty-message="Debes completar el Numero de Calle"
+
+                                           data-bv-regexp="true"
+                                           data-bv-regexp-regexp="[0-9]+"
+                                           data-bv-regexp-message="Solo números en este campo"
+
+                                           data-bv-stringlength="true"
+                                           data-bv-stringlength-min="1"
+                                           data-bv-stringlength-max="4"
+                                           data-bv-stringlength-message="El Numero debe estar entre 0 y 9999">
+                                </div>     
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                            <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIN Modal -->
+
+        <script src="../js/jquery/jquery-1.11.1.min.js"></script>
+        <script src="../js/bootstrap/bootstrap.min.js"></script>
+        <script src="../js/bootstrap/bootstrapValidator.min.js"></script>
+
+        <script src="../js/funcionesProfesor.js" type="text/javascript"></script>
+    </body>
+</html>
