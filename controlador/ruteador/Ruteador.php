@@ -1,8 +1,6 @@
 <?php
-
-  
-     // averiguo que formulario me pide una acciòn atrapo los datos de la URL   
-        $formulario = $_GET['Formulario']; //atrapo lo que viene en formulario
+     // averiguo que formulario me pide una accion atrapo los datos de la URL   
+      $formulario = $_GET['Formulario']; //atrapo lo que viene en formulario
       
         $accion = $_GET['accion']; //atrapo lo que viene en accion 
    

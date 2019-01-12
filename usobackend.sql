@@ -73,13 +73,13 @@ insert  into `usuario`(`id_usuario`,`nombre_usuario`,`clave_usuario`) values (1,
 
 DROP TABLE IF EXISTS `perro`;
 
-CREATE TABLE `perro`{
+CREATE TABLE `perro`(
  `id_perro` int(11) NOT NULL AUTO_INCREMENT,
  `nombre_perro` varchar(40) DEFAULT NULL,
  `raza_perro` varchar(40) DEFAULT NULL,
  `edad_perro` varchar(40) DEFAULT NULL,
 PRIMARY KEY(`id_perro`)
-} ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+ ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `perro`*/
 
